@@ -1,7 +1,8 @@
 // src/services/api.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://fund-backend.onrender.com/api'; ;
+
 
 // Get event details
 export const getEventDetails = async () => {

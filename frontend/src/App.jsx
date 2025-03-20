@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CreditCard, CheckCircle, Gift, DollarSign, Heart, User, Mail, Phone, MessageSquare } from 'lucide-react';
+import { CreditCard, CheckCircle, DollarSign, Heart, User, Mail, Phone, MessageSquare } from 'lucide-react';
 import './App.css';
 import { getEventDetails, submitDonation } from './services/api';
 
@@ -24,11 +24,14 @@ function App() {
       try {
         const response = await getEventDetails();
         if (response.status === 'success') {
-          const { goal, current_amount, ...eventWithoutGoal } = response.data;
-          setEvent(eventWithoutGoal);
+          // You can extract additional fields (e.g., goal, current_amount) if needed
+          setEvent(response.data);
+        } else {
+          setError('Failed to load event details.');
         }
       } catch (err) {
         console.error('Failed to fetch event details:', err);
+        setError('An error occurred while fetching event details.');
       }
     };
 
@@ -51,13 +54,14 @@ function App() {
       });
 
       if (response.status === 'success') {
+        // Redirect the user to the payment authorization URL provided by the backend
         window.location.href = response.data.authorization_url;
       } else {
         setError('Payment initialization failed. Please try again.');
       }
     } catch (err) {
-      setError('An error occurred. Please try again later.');
       console.error('Donation submission error:', err);
+      setError('An error occurred. Please try again later.');
     } finally {
       setIsLoading(false);
     }
@@ -122,7 +126,7 @@ function App() {
                   Make a Contribution
                 </h3>
 
-                {/* Donation amount */}
+                {/* Donation Amount */}
                 <div className="mb-10">
                   <label htmlFor="amount" className="block font-medium mb-3 text-purple-900">
                     Donation Amount (GHS)
@@ -157,7 +161,7 @@ function App() {
                   </div>
                 </div>
 
-                {/* Personal information */}
+                {/* Personal Information */}
                 <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="relative">
                     <label htmlFor="name" className="block font-medium mb-2 text-purple-900">
@@ -196,6 +200,7 @@ function App() {
                   </div>
                 </div>
 
+                {/* Phone Number */}
                 <div className="mb-8">
                   <label htmlFor="phone" className="block font-medium mb-2 text-purple-900">
                     Phone Number
@@ -214,6 +219,7 @@ function App() {
                   </div>
                 </div>
 
+                {/* Message */}
                 <div className="mb-10">
                   <label htmlFor="message" className="block font-medium mb-2 text-purple-900">
                     Message (Optional)
@@ -231,7 +237,7 @@ function App() {
                   </div>
                 </div>
 
-                {/* Payment methods */}
+                {/* Payment Methods */}
                 <div className="mb-10">
                   <label className="block font-medium mb-4 text-purple-900">
                     Payment Method

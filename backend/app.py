@@ -279,9 +279,9 @@ def health_check():
 
 # Run the app
 if __name__ == '__main__':
-    # Initialize the database before starting the app
+    port = int(os.environ.get("PORT", 5000))  # Default to 5000 if not set
     if init_db():
-        print("Starting Flask server...")
-        app.run(debug=True, host='0.0.0.0')
+        print(f"Starting Flask server on port {port}...")
+        app.run(debug=False, host='0.0.0.0', port=port)
     else:
         print("Failed to initialize database. Exiting.")
