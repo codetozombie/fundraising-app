@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CreditCard, CheckCircle, DollarSign, Heart, User, Mail, Phone, MessageSquare } from 'lucide-react';
 import './App.css';
 import { getEventDetails, submitDonation } from './services/api';
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   const [donationAmount, setDonationAmount] = useState('');
@@ -74,6 +75,7 @@ function App() {
   };
 
   return (
+    <> <Analytics/>
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="py-10 bg-gradient-to-r from-purple-700 to-pink-600">
@@ -347,6 +349,7 @@ function App() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
 
