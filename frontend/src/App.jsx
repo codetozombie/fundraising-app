@@ -15,8 +15,9 @@ function App() {
   const [event, setEvent] = useState({
     name: "Memorial Fund for Samuel's Mother",
     description:
-      "We are deeply saddened by the loss of our classmate's mother, Mr. Samuel Asante. As a class, we are coming together to support our friend during this difficult time.",
+      "Let's come together as a class to support Samuel during this difficult time. Your contributions will go a long way in helping him and his family.",
   });
+  
   const [error, setError] = useState(null);
 
   useEffect(() => {
