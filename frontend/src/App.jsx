@@ -13,12 +13,6 @@ function App() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('momo');
   const [isLoading, setIsLoading] = useState(false);
-  const [event, setEvent] = useState({
-    name: "Memorial Fund for Samuel's Mother",
-    description:
-      "Let's come together as a class to support Samuel during this difficult time. Your contributions will go a long way in helping him and his family.",
-  });
-  
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -26,8 +20,8 @@ function App() {
       try {
         const response = await getEventDetails();
         if (response.status === 'success') {
-          // You can extract additional fields (e.g., goal, current_amount) if needed
-          setEvent(response.data);
+          // We're not using the response data anymore for name or description
+          // But we keep the API call in case we need other data in the future
         } else {
           setError('Failed to load event details.');
         }
@@ -96,7 +90,7 @@ function App() {
                 <Heart className="mx-auto" size={52} strokeWidth={1.5} color="#be185d" />
               </div>
               <h2 className="text-3xl font-bold text-purple-900 mb-3">
-                {event.name}
+                Memorial Fund for Samuel's Mother
               </h2>
               <p className="text-pink-600 font-medium">Supporting Our Community</p>
             </div>
@@ -108,9 +102,11 @@ function App() {
               <h3 className="text-2xl font-semibold mb-5 text-purple-900 border-b border-purple-100 pb-3">
                 About This Fundraiser
               </h3>
-              <p className="mb-12 text-gray-700 leading-relaxed text-lg">
-                {event.description}
-              </p>
+              <div className="mb-12 text-gray-700 leading-relaxed text-lg">
+                <p>Let's come together as a class to support Samuel during this difficult time. Your contributions will go a long way in helping him and his family.</p>
+                <p className="mt-4">Every donation, no matter the size, makes a meaningful difference in providing the necessary support during this challenging period.</p>
+                <p className="mt-4">Thank you for your generosity and compassion.</p>
+              </div>
 
               {showSuccess && (
                 <div className="px-6 py-5 rounded-lg mb-8 bg-green-50 border border-green-200 text-green-700">
