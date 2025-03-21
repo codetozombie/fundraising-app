@@ -13,9 +13,9 @@ function App() {
   const [paymentMethod, setPaymentMethod] = useState('momo');
   const [isLoading, setIsLoading] = useState(false);
   const [event, setEvent] = useState({
-    name: "Memorial Fund for James Agyeman",
+    name: "Memorial Fund for Samuel's Mother",
     description:
-      "We are deeply saddened by the loss of our classmate's father, Mr. James Agyeman. As a class, we are coming together to support our friend during this difficult time.",
+      "We are deeply saddened by the loss of our classmate's mother, Mr. Samuel Asante. As a class, we are coming together to support our friend during this difficult time.",
   });
   const [error, setError] = useState(null);
 
@@ -312,22 +312,22 @@ function App() {
                   <div className="flex items-center">
                     <User className="mr-3 text-pink-600" size={18} />
                     <div>
-                      <span className="text-gray-500">Class Representative:</span>
-                      <div className="font-medium text-purple-900">Emmanuel Osei</div>
+                      <span className="text-gray-500">Class Prefect:</span>
+                      <div className="font-medium text-purple-900">Albert Amoako</div>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <Phone className="mr-3 text-pink-600" size={18} />
                     <div>
                       <span className="text-gray-500">Phone:</span>
-                      <div className="font-medium text-purple-900">+233 50 123 4567</div>
+                      <div className="font-medium text-purple-900">+233 20 192 9434</div>
                     </div>
                   </div>
                   <div className="flex items-center md:col-span-2">
                     <Mail className="mr-3 text-pink-600" size={18} />
                     <div>
                       <span className="text-gray-500">Email:</span>
-                      <div className="font-medium text-purple-900">class.rep@example.com</div>
+                      <div className="font-medium text-purple-900">info.me.albert@gmail.com</div>
                     </div>
                   </div>
                 </div>
@@ -342,6 +342,7 @@ function App() {
         <div className="max-w-6xl mx-auto px-4 text-center">
           <p className="mb-2">© 2025 Class Fundraiser. All rights reserved.</p>
           <p className="text-sm text-pink-100">Supporting our community in times of need</p>
+          <p className="text-sm text-pink-100">Let's gather our Arsenals</p>
         </div>
       </footer>
     </div>
