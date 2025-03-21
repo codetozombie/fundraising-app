@@ -42,7 +42,7 @@ function App() {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-
+  
     try {
       const response = await submitDonation({
         name,
@@ -52,10 +52,15 @@ function App() {
         message,
         paymentMethod,
       });
-
+  
       if (response.status === 'success') {
-        // Redirect the user to the payment authorization URL provided by the backend
-        window.location.href = response.data.authorization_url;
+        // Store the authorization URL
+        const authUrl = response.data.authorization_url;
+        
+        // Add a small delay before redirecting
+        setTimeout(() => {
+          window.location.href = authUrl;
+        }, 500);
       } else {
         setError('Payment initialization failed. Please try again.');
       }

@@ -16,12 +16,29 @@ export const getEventDetails = async () => {
 };
 
 // Submit donation
+// src/services/api.js
 export const submitDonation = async (donationData) => {
   try {
-    const response = await axios.post(`${API_URL}/donate`, donationData);
+    // Add a longer timeout for the payment initialization
+    const response = await axios.post(`${API_URL}/donate`, donationData, {
+      timeout: 30000 // 30 seconds
+    });
     return response.data;
   } catch (error) {
     console.error('Error submitting donation:', error);
+    // Properly handle and rethrow the error
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.error('Response data:', error.response.data);
+      console.error('Response status:', error.response.status);
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.error('Request was made but no response received');
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error('Error setting up request:', error.message);
+    }
     throw error;
   }
 };
